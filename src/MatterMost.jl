@@ -60,6 +60,17 @@ include("apis/api_UsageApi.jl")
 include("apis/api_UsersApi.jl")
 include("apis/api_WebhooksApi.jl")
 
+include("client.jl")
+
+export Client
+export DEFAULT_API_VERSION
+export api_client
+export api_endpoint
+export delete_message!
+export edit_message!
+export raw_client
+export send_message!
+
 # export models
 export AddChannelMemberRequest
 export AddChecklistItemRequest

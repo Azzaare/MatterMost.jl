@@ -1,0 +1,6 @@
+repository = "mattermost/mattermost"
+path = "api/v4"
+last_seen_commit = "fb87397dbaeacf2578ab5f9ab69a0ee3860f9e80"
+observed_at = "2026-08-25"
+generated_api_version = "4.0.0"
+

@@ -1,5 +1,46 @@
 # Julia API client for MatterMost
 
+MatterMost.jl separates two layers:
+
+- the generated REST v4 surface, kept available for complete endpoint coverage;
+- a small stable facade intended for applications and for ChatThemAll extensions.
+
+## Stable client facade
+
+~~~julia
+using MatterMost
+
+client = MatterMost.Client(
+    "https://chat.example.org";
+    token = ENV["MATTERMOST_TOKEN"],
+)
+
+post = MatterMost.send_message!(client, "channel-id", "Hello from Julia")
+MatterMost.edit_message!(client, post.id, "Updated message")
+MatterMost.delete_message!(client, post.id)
+~~~
+
+The facade always normalizes the server URL to /api/v4. Application code should
+prefer it over direct calls to generated API types. Generated methods remain
+public for endpoints that do not yet have a stable wrapper.
+
+## Upstream API monitoring
+
+The generated snapshot currently reports API version 4.0.0. This version number
+is the REST API family and is not the Mattermost server release number.
+
+The official specification now lives in the Mattermost server repository under
+api/v4. A weekly GitHub Actions job runs:
+
+~~~text
+julia --startup-file=no scripts/check_openapi_upstream.jl
+~~~
+
+The job compares the newest upstream commit touching api/v4 with
+openapi/upstream.toml. A failure means that the generated snapshot must be
+reviewed; it does not silently regenerate or publish incompatible Julia code.
+After review and regeneration, update last_seen_commit in the lock file.
+
 ### Note about the openapi.json file
 
 The original openapi.json file is not directly compatible with the julia-client generator. The following changes were made to the file:
@@ -859,4 +900,3 @@ Example
 ## Author
 
 feedback@mattermost.com
-

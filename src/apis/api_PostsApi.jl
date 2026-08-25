@@ -9,26 +9,26 @@ end
 The default API base path for APIs in `PostsApi`.
 This can be used to construct the `OpenAPI.Clients.Client` instance.
 """
-basepath(::Type{ PostsApi }) = "http://your-mattermost-url.com/api/v4"
+basepath(::Type{PostsApi}) = "http://your-mattermost-url.com/api/v4"
 
 const _returntypes_create_post_PostsApi = Dict{Regex,Type}(
-    Regex("^" * replace("201", "x"=>".") * "\$") => Post,
-    Regex("^" * replace("400", "x"=>".") * "\$") => AppError,
-    Regex("^" * replace("401", "x"=>".") * "\$") => AppError,
-    Regex("^" * replace("403", "x"=>".") * "\$") => AppError,
+    Regex("^" * replace("201", "x" => ".") * "\$") => Post,
+    Regex("^" * replace("400", "x" => ".") * "\$") => AppError,
+    Regex("^" * replace("401", "x" => ".") * "\$") => AppError,
+    Regex("^" * replace("403", "x" => ".") * "\$") => AppError,
 )
 
 function _oacinternal_create_post(_api::PostsApi, create_post_request::CreatePostRequest; set_online=nothing, _mediaType=nothing)
-    _ctx = OpenAPI.Clients.Ctx(_api.client, "POST", _returntypes_create_post_PostsApi, "/posts", ["bearerAuth", ], create_post_request)
+    _ctx = OpenAPI.Clients.Ctx(_api.client, "POST", _returntypes_create_post_PostsApi, "/posts", ["bearerAuth",], create_post_request)
     OpenAPI.Clients.set_param(_ctx.query, "set_online", set_online)  # type Bool
-    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
-    OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? ["application/json", ] : [_mediaType])
+    OpenAPI.Clients.set_header_accept(_ctx, ["application/json",])
+    OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? ["application/json",] : [_mediaType])
     return _ctx
 end
 
 @doc raw"""Create a post
 
-Create a new post in a channel. To create the post as a comment on another post, provide `root_id`. ##### Permissions Must have `create_post` permission for the channel the post is being created in. 
+Create a new post in a channel. To create the post as a comment on another post, provide `root_id`. ##### Permissions Must have `create_post` permission for the channel the post is being created in.
 
 Params:
 - create_post_request::CreatePostRequest (required)
@@ -47,22 +47,22 @@ function create_post(_api::PostsApi, response_stream::Channel, create_post_reque
 end
 
 const _returntypes_create_post_ephemeral_PostsApi = Dict{Regex,Type}(
-    Regex("^" * replace("201", "x"=>".") * "\$") => Post,
-    Regex("^" * replace("400", "x"=>".") * "\$") => AppError,
-    Regex("^" * replace("401", "x"=>".") * "\$") => AppError,
-    Regex("^" * replace("403", "x"=>".") * "\$") => AppError,
+    Regex("^" * replace("201", "x" => ".") * "\$") => Post,
+    Regex("^" * replace("400", "x" => ".") * "\$") => AppError,
+    Regex("^" * replace("401", "x" => ".") * "\$") => AppError,
+    Regex("^" * replace("403", "x" => ".") * "\$") => AppError,
 )
 
 function _oacinternal_create_post_ephemeral(_api::PostsApi, create_post_ephemeral_request::CreatePostEphemeralRequest; _mediaType=nothing)
-    _ctx = OpenAPI.Clients.Ctx(_api.client, "POST", _returntypes_create_post_ephemeral_PostsApi, "/posts/ephemeral", ["bearerAuth", ], create_post_ephemeral_request)
-    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
-    OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? ["application/json", ] : [_mediaType])
+    _ctx = OpenAPI.Clients.Ctx(_api.client, "POST", _returntypes_create_post_ephemeral_PostsApi, "/posts/ephemeral", ["bearerAuth",], create_post_ephemeral_request)
+    OpenAPI.Clients.set_header_accept(_ctx, ["application/json",])
+    OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? ["application/json",] : [_mediaType])
     return _ctx
 end
 
 @doc raw"""Create a ephemeral post
 
-Create a new ephemeral post in a channel. ##### Permissions Must have `create_post_ephemeral` permission (currently only given to system admin) 
+Create a new ephemeral post in a channel. ##### Permissions Must have `create_post_ephemeral` permission (currently only given to system admin)
 
 Params:
 - create_post_ephemeral_request::CreatePostEphemeralRequest (required)
@@ -80,23 +80,23 @@ function create_post_ephemeral(_api::PostsApi, response_stream::Channel, create_
 end
 
 const _returntypes_delete_post_PostsApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => StatusOK,
-    Regex("^" * replace("400", "x"=>".") * "\$") => AppError,
-    Regex("^" * replace("401", "x"=>".") * "\$") => AppError,
-    Regex("^" * replace("403", "x"=>".") * "\$") => AppError,
+    Regex("^" * replace("200", "x" => ".") * "\$") => StatusOK,
+    Regex("^" * replace("400", "x" => ".") * "\$") => AppError,
+    Regex("^" * replace("401", "x" => ".") * "\$") => AppError,
+    Regex("^" * replace("403", "x" => ".") * "\$") => AppError,
 )
 
 function _oacinternal_delete_post(_api::PostsApi, post_id::String; _mediaType=nothing)
-    _ctx = OpenAPI.Clients.Ctx(_api.client, "DELETE", _returntypes_delete_post_PostsApi, "/posts/{post_id}", ["bearerAuth", ])
+    _ctx = OpenAPI.Clients.Ctx(_api.client, "DELETE", _returntypes_delete_post_PostsApi, "/posts/{post_id}", ["bearerAuth",])
     OpenAPI.Clients.set_param(_ctx.path, "post_id", post_id)  # type String
-    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
+    OpenAPI.Clients.set_header_accept(_ctx, ["application/json",])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
 end
 
 @doc raw"""Delete a post
 
-Soft deletes a post, by marking the post as deleted in the database. Soft deleted posts will not be returned in post queries. ##### Permissions Must be logged in as the user or have `delete_others_posts` permission. 
+Soft deletes a post, by marking the post as deleted in the database. Soft deleted posts will not be returned in post queries. ##### Permissions Must be logged in as the user or have `delete_others_posts` permission.
 
 Params:
 - post_id::String (required)
@@ -114,24 +114,24 @@ function delete_post(_api::PostsApi, response_stream::Channel, post_id::String; 
 end
 
 const _returntypes_do_post_action_PostsApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => StatusOK,
-    Regex("^" * replace("400", "x"=>".") * "\$") => AppError,
-    Regex("^" * replace("401", "x"=>".") * "\$") => AppError,
-    Regex("^" * replace("403", "x"=>".") * "\$") => AppError,
+    Regex("^" * replace("200", "x" => ".") * "\$") => StatusOK,
+    Regex("^" * replace("400", "x" => ".") * "\$") => AppError,
+    Regex("^" * replace("401", "x" => ".") * "\$") => AppError,
+    Regex("^" * replace("403", "x" => ".") * "\$") => AppError,
 )
 
 function _oacinternal_do_post_action(_api::PostsApi, post_id::String, action_id::String; _mediaType=nothing)
-    _ctx = OpenAPI.Clients.Ctx(_api.client, "POST", _returntypes_do_post_action_PostsApi, "/posts/{post_id}/actions/{action_id}", ["bearerAuth", ])
+    _ctx = OpenAPI.Clients.Ctx(_api.client, "POST", _returntypes_do_post_action_PostsApi, "/posts/{post_id}/actions/{action_id}", ["bearerAuth",])
     OpenAPI.Clients.set_param(_ctx.path, "post_id", post_id)  # type String
     OpenAPI.Clients.set_param(_ctx.path, "action_id", action_id)  # type String
-    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
+    OpenAPI.Clients.set_header_accept(_ctx, ["application/json",])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
 end
 
 @doc raw"""Perform a post action
 
-Perform a post action, which allows users to interact with integrations through posts. ##### Permissions Must be authenticated and have the `read_channel` permission to the channel the post is in. 
+Perform a post action, which allows users to interact with integrations through posts. ##### Permissions Must be authenticated and have the `read_channel` permission to the channel the post is in.
 
 Params:
 - post_id::String (required)
@@ -150,24 +150,24 @@ function do_post_action(_api::PostsApi, response_stream::Channel, post_id::Strin
 end
 
 const _returntypes_get_file_infos_for_post_PostsApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => Vector{FileInfo},
-    Regex("^" * replace("400", "x"=>".") * "\$") => AppError,
-    Regex("^" * replace("401", "x"=>".") * "\$") => AppError,
-    Regex("^" * replace("403", "x"=>".") * "\$") => AppError,
+    Regex("^" * replace("200", "x" => ".") * "\$") => Vector{FileInfo},
+    Regex("^" * replace("400", "x" => ".") * "\$") => AppError,
+    Regex("^" * replace("401", "x" => ".") * "\$") => AppError,
+    Regex("^" * replace("403", "x" => ".") * "\$") => AppError,
 )
 
 function _oacinternal_get_file_infos_for_post(_api::PostsApi, post_id::String; include_deleted=nothing, _mediaType=nothing)
-    _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_get_file_infos_for_post_PostsApi, "/posts/{post_id}/files/info", ["bearerAuth", ])
+    _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_get_file_infos_for_post_PostsApi, "/posts/{post_id}/files/info", ["bearerAuth",])
     OpenAPI.Clients.set_param(_ctx.path, "post_id", post_id)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "include_deleted", include_deleted)  # type Bool
-    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
+    OpenAPI.Clients.set_header_accept(_ctx, ["application/json",])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
 end
 
 @doc raw"""Get file info for post
 
-Gets a list of file information objects for the files attached to a post. ##### Permissions Must have `read_channel` permission for the channel the post is in. 
+Gets a list of file information objects for the files attached to a post. ##### Permissions Must have `read_channel` permission for the channel the post is in.
 
 Params:
 - post_id::String (required)
@@ -186,27 +186,27 @@ function get_file_infos_for_post(_api::PostsApi, response_stream::Channel, post_
 end
 
 const _returntypes_get_flagged_posts_for_user_PostsApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => Vector{PostList},
-    Regex("^" * replace("400", "x"=>".") * "\$") => AppError,
-    Regex("^" * replace("401", "x"=>".") * "\$") => AppError,
-    Regex("^" * replace("403", "x"=>".") * "\$") => AppError,
+    Regex("^" * replace("200", "x" => ".") * "\$") => Vector{PostList},
+    Regex("^" * replace("400", "x" => ".") * "\$") => AppError,
+    Regex("^" * replace("401", "x" => ".") * "\$") => AppError,
+    Regex("^" * replace("403", "x" => ".") * "\$") => AppError,
 )
 
 function _oacinternal_get_flagged_posts_for_user(_api::PostsApi, user_id::String; team_id=nothing, channel_id=nothing, page=nothing, per_page=nothing, _mediaType=nothing)
-    _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_get_flagged_posts_for_user_PostsApi, "/users/{user_id}/posts/flagged", ["bearerAuth", ])
+    _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_get_flagged_posts_for_user_PostsApi, "/users/{user_id}/posts/flagged", ["bearerAuth",])
     OpenAPI.Clients.set_param(_ctx.path, "user_id", user_id)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "team_id", team_id)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "channel_id", channel_id)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "page", page)  # type Int64
     OpenAPI.Clients.set_param(_ctx.query, "per_page", per_page)  # type Int64
-    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
+    OpenAPI.Clients.set_header_accept(_ctx, ["application/json",])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
 end
 
 @doc raw"""Get a list of flagged posts
 
-Get a page of flagged posts of a user provided user id string. Selects from a channel, team, or all flagged posts by a user. Will only return posts from channels in which the user is member. ##### Permissions Must be user or have `manage_system` permission. 
+Get a page of flagged posts of a user provided user id string. Selects from a channel, team, or all flagged posts by a user. Will only return posts from channels in which the user is member. ##### Permissions Must be user or have `manage_system` permission.
 
 Params:
 - user_id::String (required)
@@ -228,24 +228,24 @@ function get_flagged_posts_for_user(_api::PostsApi, response_stream::Channel, us
 end
 
 const _returntypes_get_post_PostsApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => Post,
-    Regex("^" * replace("400", "x"=>".") * "\$") => AppError,
-    Regex("^" * replace("401", "x"=>".") * "\$") => AppError,
-    Regex("^" * replace("403", "x"=>".") * "\$") => AppError,
+    Regex("^" * replace("200", "x" => ".") * "\$") => Post,
+    Regex("^" * replace("400", "x" => ".") * "\$") => AppError,
+    Regex("^" * replace("401", "x" => ".") * "\$") => AppError,
+    Regex("^" * replace("403", "x" => ".") * "\$") => AppError,
 )
 
 function _oacinternal_get_post(_api::PostsApi, post_id::String; include_deleted=nothing, _mediaType=nothing)
-    _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_get_post_PostsApi, "/posts/{post_id}", ["bearerAuth", ])
+    _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_get_post_PostsApi, "/posts/{post_id}", ["bearerAuth",])
     OpenAPI.Clients.set_param(_ctx.path, "post_id", post_id)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "include_deleted", include_deleted)  # type Bool
-    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
+    OpenAPI.Clients.set_header_accept(_ctx, ["application/json",])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
 end
 
 @doc raw"""Get a post
 
-Get a single post. ##### Permissions Must have `read_channel` permission for the channel the post is in or if the channel is public, have the `read_public_channels` permission for the team. 
+Get a single post. ##### Permissions Must have `read_channel` permission for the channel the post is in or if the channel is public, have the `read_public_channels` permission for the team.
 
 Params:
 - post_id::String (required)
@@ -264,14 +264,14 @@ function get_post(_api::PostsApi, response_stream::Channel, post_id::String; inc
 end
 
 const _returntypes_get_post_thread_PostsApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => PostList,
-    Regex("^" * replace("400", "x"=>".") * "\$") => AppError,
-    Regex("^" * replace("401", "x"=>".") * "\$") => AppError,
-    Regex("^" * replace("403", "x"=>".") * "\$") => AppError,
+    Regex("^" * replace("200", "x" => ".") * "\$") => PostList,
+    Regex("^" * replace("400", "x" => ".") * "\$") => AppError,
+    Regex("^" * replace("401", "x" => ".") * "\$") => AppError,
+    Regex("^" * replace("403", "x" => ".") * "\$") => AppError,
 )
 
 function _oacinternal_get_post_thread(_api::PostsApi, post_id::String; per_page=nothing, from_post=nothing, from_create_at=nothing, direction=nothing, skip_fetch_threads=nothing, collapsed_threads=nothing, collapsed_threads_extended=nothing, _mediaType=nothing)
-    _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_get_post_thread_PostsApi, "/posts/{post_id}/thread", ["bearerAuth", ])
+    _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_get_post_thread_PostsApi, "/posts/{post_id}/thread", ["bearerAuth",])
     OpenAPI.Clients.set_param(_ctx.path, "post_id", post_id)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "perPage", per_page)  # type Int64
     OpenAPI.Clients.set_param(_ctx.query, "fromPost", from_post)  # type String
@@ -280,14 +280,14 @@ function _oacinternal_get_post_thread(_api::PostsApi, post_id::String; per_page=
     OpenAPI.Clients.set_param(_ctx.query, "skipFetchThreads", skip_fetch_threads)  # type Bool
     OpenAPI.Clients.set_param(_ctx.query, "collapsedThreads", collapsed_threads)  # type Bool
     OpenAPI.Clients.set_param(_ctx.query, "collapsedThreadsExtended", collapsed_threads_extended)  # type Bool
-    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
+    OpenAPI.Clients.set_header_accept(_ctx, ["application/json",])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
 end
 
 @doc raw"""Get a thread
 
-Get a post and the rest of the posts in the same thread. ##### Permissions Must have `read_channel` permission for the channel the post is in or if the channel is public, have the `read_public_channels` permission for the team. 
+Get a post and the rest of the posts in the same thread. ##### Permissions Must have `read_channel` permission for the channel the post is in or if the channel is public, have the `read_public_channels` permission for the team.
 
 Params:
 - post_id::String (required)
@@ -312,10 +312,10 @@ function get_post_thread(_api::PostsApi, response_stream::Channel, post_id::Stri
 end
 
 const _returntypes_get_posts_around_last_unread_PostsApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => PostList,
-    Regex("^" * replace("400", "x"=>".") * "\$") => AppError,
-    Regex("^" * replace("401", "x"=>".") * "\$") => AppError,
-    Regex("^" * replace("403", "x"=>".") * "\$") => AppError,
+    Regex("^" * replace("200", "x" => ".") * "\$") => PostList,
+    Regex("^" * replace("400", "x" => ".") * "\$") => AppError,
+    Regex("^" * replace("401", "x" => ".") * "\$") => AppError,
+    Regex("^" * replace("403", "x" => ".") * "\$") => AppError,
 )
 
 function _oacinternal_get_posts_around_last_unread(_api::PostsApi, user_id::String, channel_id::String; limit_before=nothing, limit_after=nothing, skip_fetch_threads=nothing, collapsed_threads=nothing, collapsed_threads_extended=nothing, _mediaType=nothing)
@@ -325,7 +325,7 @@ function _oacinternal_get_posts_around_last_unread(_api::PostsApi, user_id::Stri
     OpenAPI.validate_param("limit_after", "get_posts_around_last_unread", :maximum, limit_after, 200, false)
     OpenAPI.validate_param("limit_after", "get_posts_around_last_unread", :minimum, limit_after, 1, false)
 
-    _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_get_posts_around_last_unread_PostsApi, "/users/{user_id}/channels/{channel_id}/posts/unread", ["bearerAuth", ])
+    _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_get_posts_around_last_unread_PostsApi, "/users/{user_id}/channels/{channel_id}/posts/unread", ["bearerAuth",])
     OpenAPI.Clients.set_param(_ctx.path, "user_id", user_id)  # type String
     OpenAPI.Clients.set_param(_ctx.path, "channel_id", channel_id)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "limit_before", limit_before)  # type Int64
@@ -333,14 +333,14 @@ function _oacinternal_get_posts_around_last_unread(_api::PostsApi, user_id::Stri
     OpenAPI.Clients.set_param(_ctx.query, "skipFetchThreads", skip_fetch_threads)  # type Bool
     OpenAPI.Clients.set_param(_ctx.query, "collapsedThreads", collapsed_threads)  # type Bool
     OpenAPI.Clients.set_param(_ctx.query, "collapsedThreadsExtended", collapsed_threads_extended)  # type Bool
-    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
+    OpenAPI.Clients.set_header_accept(_ctx, ["application/json",])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
 end
 
 @doc raw"""Get posts around oldest unread
 
-Get the oldest unread post in the channel for the given user as well as the posts around it. The returned list is sorted in descending order (most recent post first). ##### Permissions Must be logged in as the user or have `edit_other_users` permission, and must have `read_channel` permission for the channel. __Minimum server version__: 5.14 
+Get the oldest unread post in the channel for the given user as well as the posts around it. The returned list is sorted in descending order (most recent post first). ##### Permissions Must be logged in as the user or have `edit_other_users` permission, and must have `read_channel` permission for the channel. __Minimum server version__: 5.14
 
 Params:
 - user_id::String (required)
@@ -364,22 +364,22 @@ function get_posts_around_last_unread(_api::PostsApi, response_stream::Channel, 
 end
 
 const _returntypes_get_posts_by_ids_PostsApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => Vector{Post},
-    Regex("^" * replace("400", "x"=>".") * "\$") => AppError,
-    Regex("^" * replace("401", "x"=>".") * "\$") => AppError,
-    Regex("^" * replace("403", "x"=>".") * "\$") => AppError,
+    Regex("^" * replace("200", "x" => ".") * "\$") => Vector{Post},
+    Regex("^" * replace("400", "x" => ".") * "\$") => AppError,
+    Regex("^" * replace("401", "x" => ".") * "\$") => AppError,
+    Regex("^" * replace("403", "x" => ".") * "\$") => AppError,
 )
 
 function _oacinternal_get_posts_by_ids(_api::PostsApi, request_body::Vector{String}; _mediaType=nothing)
-    _ctx = OpenAPI.Clients.Ctx(_api.client, "POST", _returntypes_get_posts_by_ids_PostsApi, "/posts/ids", ["bearerAuth", ], request_body)
-    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
-    OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? ["application/json", ] : [_mediaType])
+    _ctx = OpenAPI.Clients.Ctx(_api.client, "POST", _returntypes_get_posts_by_ids_PostsApi, "/posts/ids", ["bearerAuth",], request_body)
+    OpenAPI.Clients.set_header_accept(_ctx, ["application/json",])
+    OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? ["application/json",] : [_mediaType])
     return _ctx
 end
 
 @doc raw"""Get posts by a list of ids
 
-Fetch a list of posts based on the provided postIDs ##### Permissions Must have `read_channel` permission for the channel the post is in or if the channel is public, have the `read_public_channels` permission for the team. 
+Fetch a list of posts based on the provided postIDs ##### Permissions Must have `read_channel` permission for the channel the post is in or if the channel is public, have the `read_public_channels` permission for the team.
 
 Params:
 - request_body::Vector{String} (required)
@@ -397,14 +397,14 @@ function get_posts_by_ids(_api::PostsApi, response_stream::Channel, request_body
 end
 
 const _returntypes_get_posts_for_channel_PostsApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => PostList,
-    Regex("^" * replace("400", "x"=>".") * "\$") => AppError,
-    Regex("^" * replace("401", "x"=>".") * "\$") => AppError,
-    Regex("^" * replace("403", "x"=>".") * "\$") => AppError,
+    Regex("^" * replace("200", "x" => ".") * "\$") => PostList,
+    Regex("^" * replace("400", "x" => ".") * "\$") => AppError,
+    Regex("^" * replace("401", "x" => ".") * "\$") => AppError,
+    Regex("^" * replace("403", "x" => ".") * "\$") => AppError,
 )
 
 function _oacinternal_get_posts_for_channel(_api::PostsApi, channel_id::String; page=nothing, per_page=nothing, since=nothing, before=nothing, after=nothing, include_deleted=nothing, _mediaType=nothing)
-    _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_get_posts_for_channel_PostsApi, "/channels/{channel_id}/posts", ["bearerAuth", ])
+    _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_get_posts_for_channel_PostsApi, "/channels/{channel_id}/posts", ["bearerAuth",])
     OpenAPI.Clients.set_param(_ctx.path, "channel_id", channel_id)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "page", page)  # type Int64
     OpenAPI.Clients.set_param(_ctx.query, "per_page", per_page)  # type Int64
@@ -412,14 +412,14 @@ function _oacinternal_get_posts_for_channel(_api::PostsApi, channel_id::String; 
     OpenAPI.Clients.set_param(_ctx.query, "before", before)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "after", after)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "include_deleted", include_deleted)  # type Bool
-    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
+    OpenAPI.Clients.set_header_accept(_ctx, ["application/json",])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
 end
 
 @doc raw"""Get posts for a channel
 
-Get a page of posts in a channel. Use the query parameters to modify the behaviour of this endpoint. The parameter `since` must not be used with any of `before`, `after`, `page`, and `per_page` parameters. If `since` is used, it will always return all posts modified since that time, ordered by their create time limited till 1000. A caveat with this parameter is that there is no guarantee that the returned posts will be consecutive. It is left to the clients to maintain state and fill any missing holes in the post order. ##### Permissions Must have `read_channel` permission for the channel. 
+Get a page of posts in a channel. Use the query parameters to modify the behaviour of this endpoint. The parameter `since` must not be used with any of `before`, `after`, `page`, and `per_page` parameters. If `since` is used, it will always return all posts modified since that time, ordered by their create time limited till 1000. A caveat with this parameter is that there is no guarantee that the returned posts will be consecutive. It is left to the clients to maintain state and fill any missing holes in the post order. ##### Permissions Must have `read_channel` permission for the channel.
 
 Params:
 - channel_id::String (required)
@@ -443,23 +443,23 @@ function get_posts_for_channel(_api::PostsApi, response_stream::Channel, channel
 end
 
 const _returntypes_patch_post_PostsApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => Post,
-    Regex("^" * replace("400", "x"=>".") * "\$") => AppError,
-    Regex("^" * replace("401", "x"=>".") * "\$") => AppError,
-    Regex("^" * replace("403", "x"=>".") * "\$") => AppError,
+    Regex("^" * replace("200", "x" => ".") * "\$") => Post,
+    Regex("^" * replace("400", "x" => ".") * "\$") => AppError,
+    Regex("^" * replace("401", "x" => ".") * "\$") => AppError,
+    Regex("^" * replace("403", "x" => ".") * "\$") => AppError,
 )
 
 function _oacinternal_patch_post(_api::PostsApi, post_id::String, patch_post_request::PatchPostRequest; _mediaType=nothing)
-    _ctx = OpenAPI.Clients.Ctx(_api.client, "PUT", _returntypes_patch_post_PostsApi, "/posts/{post_id}/patch", ["bearerAuth", ], patch_post_request)
+    _ctx = OpenAPI.Clients.Ctx(_api.client, "PUT", _returntypes_patch_post_PostsApi, "/posts/{post_id}/patch", ["bearerAuth",], patch_post_request)
     OpenAPI.Clients.set_param(_ctx.path, "post_id", post_id)  # type String
-    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
-    OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? ["application/json", ] : [_mediaType])
+    OpenAPI.Clients.set_header_accept(_ctx, ["application/json",])
+    OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? ["application/json",] : [_mediaType])
     return _ctx
 end
 
 @doc raw"""Patch a post
 
-Partially update a post by providing only the fields you want to update. Omitted fields will not be updated. The fields that can be updated are defined in the request body, all other provided fields will be ignored. ##### Permissions Must have the `edit_post` permission. 
+Partially update a post by providing only the fields you want to update. Omitted fields will not be updated. The fields that can be updated are defined in the request body, all other provided fields will be ignored. ##### Permissions Must have the `edit_post` permission.
 
 Params:
 - post_id::String (required)
@@ -478,23 +478,23 @@ function patch_post(_api::PostsApi, response_stream::Channel, post_id::String, p
 end
 
 const _returntypes_pin_post_PostsApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => StatusOK,
-    Regex("^" * replace("400", "x"=>".") * "\$") => AppError,
-    Regex("^" * replace("401", "x"=>".") * "\$") => AppError,
-    Regex("^" * replace("403", "x"=>".") * "\$") => AppError,
+    Regex("^" * replace("200", "x" => ".") * "\$") => StatusOK,
+    Regex("^" * replace("400", "x" => ".") * "\$") => AppError,
+    Regex("^" * replace("401", "x" => ".") * "\$") => AppError,
+    Regex("^" * replace("403", "x" => ".") * "\$") => AppError,
 )
 
 function _oacinternal_pin_post(_api::PostsApi, post_id::String; _mediaType=nothing)
-    _ctx = OpenAPI.Clients.Ctx(_api.client, "POST", _returntypes_pin_post_PostsApi, "/posts/{post_id}/pin", ["bearerAuth", ])
+    _ctx = OpenAPI.Clients.Ctx(_api.client, "POST", _returntypes_pin_post_PostsApi, "/posts/{post_id}/pin", ["bearerAuth",])
     OpenAPI.Clients.set_param(_ctx.path, "post_id", post_id)  # type String
-    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
+    OpenAPI.Clients.set_header_accept(_ctx, ["application/json",])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
 end
 
 @doc raw"""Pin a post to the channel
 
-Pin a post to a channel it is in based from the provided post id string. ##### Permissions Must be authenticated and have the `read_channel` permission to the channel the post is in. 
+Pin a post to a channel it is in based from the provided post id string. ##### Permissions Must be authenticated and have the `read_channel` permission to the channel the post is in.
 
 Params:
 - post_id::String (required)
@@ -512,23 +512,23 @@ function pin_post(_api::PostsApi, response_stream::Channel, post_id::String; _me
 end
 
 const _returntypes_search_posts_PostsApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => PostListWithSearchMatches,
-    Regex("^" * replace("400", "x"=>".") * "\$") => AppError,
-    Regex("^" * replace("401", "x"=>".") * "\$") => AppError,
-    Regex("^" * replace("403", "x"=>".") * "\$") => AppError,
+    Regex("^" * replace("200", "x" => ".") * "\$") => PostListWithSearchMatches,
+    Regex("^" * replace("400", "x" => ".") * "\$") => AppError,
+    Regex("^" * replace("401", "x" => ".") * "\$") => AppError,
+    Regex("^" * replace("403", "x" => ".") * "\$") => AppError,
 )
 
 function _oacinternal_search_posts(_api::PostsApi, team_id::String, search_posts_request::SearchPostsRequest; _mediaType=nothing)
-    _ctx = OpenAPI.Clients.Ctx(_api.client, "POST", _returntypes_search_posts_PostsApi, "/teams/{team_id}/posts/search", ["bearerAuth", ], search_posts_request)
+    _ctx = OpenAPI.Clients.Ctx(_api.client, "POST", _returntypes_search_posts_PostsApi, "/teams/{team_id}/posts/search", ["bearerAuth",], search_posts_request)
     OpenAPI.Clients.set_param(_ctx.path, "team_id", team_id)  # type String
-    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
-    OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? ["application/json", ] : [_mediaType])
+    OpenAPI.Clients.set_header_accept(_ctx, ["application/json",])
+    OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? ["application/json",] : [_mediaType])
     return _ctx
 end
 
 @doc raw"""Search for team posts
 
-Search posts in the team and from the provided terms string. ##### Permissions Must be authenticated and have the `view_team` permission. 
+Search posts in the team and from the provided terms string. ##### Permissions Must be authenticated and have the `view_team` permission.
 
 Params:
 - team_id::String (required)
@@ -547,25 +547,25 @@ function search_posts(_api::PostsApi, response_stream::Channel, team_id::String,
 end
 
 const _returntypes_set_post_reminder_PostsApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => StatusOK,
-    Regex("^" * replace("400", "x"=>".") * "\$") => AppError,
-    Regex("^" * replace("401", "x"=>".") * "\$") => AppError,
-    Regex("^" * replace("403", "x"=>".") * "\$") => AppError,
-    Regex("^" * replace("404", "x"=>".") * "\$") => AppError,
+    Regex("^" * replace("200", "x" => ".") * "\$") => StatusOK,
+    Regex("^" * replace("400", "x" => ".") * "\$") => AppError,
+    Regex("^" * replace("401", "x" => ".") * "\$") => AppError,
+    Regex("^" * replace("403", "x" => ".") * "\$") => AppError,
+    Regex("^" * replace("404", "x" => ".") * "\$") => AppError,
 )
 
 function _oacinternal_set_post_reminder(_api::PostsApi, user_id::String, post_id::String, set_post_reminder_request::SetPostReminderRequest; _mediaType=nothing)
-    _ctx = OpenAPI.Clients.Ctx(_api.client, "POST", _returntypes_set_post_reminder_PostsApi, "/users/{user_id}/posts/{post_id}/reminder", ["bearerAuth", ], set_post_reminder_request)
+    _ctx = OpenAPI.Clients.Ctx(_api.client, "POST", _returntypes_set_post_reminder_PostsApi, "/users/{user_id}/posts/{post_id}/reminder", ["bearerAuth",], set_post_reminder_request)
     OpenAPI.Clients.set_param(_ctx.path, "user_id", user_id)  # type String
     OpenAPI.Clients.set_param(_ctx.path, "post_id", post_id)  # type String
-    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
-    OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? ["application/json", ] : [_mediaType])
+    OpenAPI.Clients.set_header_accept(_ctx, ["application/json",])
+    OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? ["application/json",] : [_mediaType])
     return _ctx
 end
 
 @doc raw"""Set a post reminder
 
-Set a reminder for the user for the post. ##### Permissions Must have `read_channel` permission for the channel the post is in.  __Minimum server version__: 7.2 
+Set a reminder for the user for the post. ##### Permissions Must have `read_channel` permission for the channel the post is in.  __Minimum server version__: 7.2
 
 Params:
 - user_id::String (required)
@@ -585,25 +585,25 @@ function set_post_reminder(_api::PostsApi, response_stream::Channel, user_id::St
 end
 
 const _returntypes_set_post_unread_PostsApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => ChannelUnreadAt,
-    Regex("^" * replace("400", "x"=>".") * "\$") => AppError,
-    Regex("^" * replace("401", "x"=>".") * "\$") => AppError,
-    Regex("^" * replace("403", "x"=>".") * "\$") => AppError,
-    Regex("^" * replace("404", "x"=>".") * "\$") => AppError,
+    Regex("^" * replace("200", "x" => ".") * "\$") => ChannelUnreadAt,
+    Regex("^" * replace("400", "x" => ".") * "\$") => AppError,
+    Regex("^" * replace("401", "x" => ".") * "\$") => AppError,
+    Regex("^" * replace("403", "x" => ".") * "\$") => AppError,
+    Regex("^" * replace("404", "x" => ".") * "\$") => AppError,
 )
 
 function _oacinternal_set_post_unread(_api::PostsApi, user_id::String, post_id::String; _mediaType=nothing)
-    _ctx = OpenAPI.Clients.Ctx(_api.client, "POST", _returntypes_set_post_unread_PostsApi, "/users/{user_id}/posts/{post_id}/set_unread", ["bearerAuth", ])
+    _ctx = OpenAPI.Clients.Ctx(_api.client, "POST", _returntypes_set_post_unread_PostsApi, "/users/{user_id}/posts/{post_id}/set_unread", ["bearerAuth",])
     OpenAPI.Clients.set_param(_ctx.path, "user_id", user_id)  # type String
     OpenAPI.Clients.set_param(_ctx.path, "post_id", post_id)  # type String
-    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
+    OpenAPI.Clients.set_header_accept(_ctx, ["application/json",])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
 end
 
 @doc raw"""Mark as unread from a post.
 
-Mark a channel as being unread from a given post. ##### Permissions Must have `read_channel` permission for the channel the post is in or if the channel is public, have the `read_public_channels` permission for the team. Must have `edit_other_users` permission if the user is not the one marking the post for himself.  __Minimum server version__: 5.18 
+Mark a channel as being unread from a given post. ##### Permissions Must have `read_channel` permission for the channel the post is in or if the channel is public, have the `read_public_channels` permission for the team. Must have `edit_other_users` permission if the user is not the one marking the post for himself.  __Minimum server version__: 5.18
 
 Params:
 - user_id::String (required)
@@ -622,23 +622,23 @@ function set_post_unread(_api::PostsApi, response_stream::Channel, user_id::Stri
 end
 
 const _returntypes_unpin_post_PostsApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => StatusOK,
-    Regex("^" * replace("400", "x"=>".") * "\$") => AppError,
-    Regex("^" * replace("401", "x"=>".") * "\$") => AppError,
-    Regex("^" * replace("403", "x"=>".") * "\$") => AppError,
+    Regex("^" * replace("200", "x" => ".") * "\$") => StatusOK,
+    Regex("^" * replace("400", "x" => ".") * "\$") => AppError,
+    Regex("^" * replace("401", "x" => ".") * "\$") => AppError,
+    Regex("^" * replace("403", "x" => ".") * "\$") => AppError,
 )
 
 function _oacinternal_unpin_post(_api::PostsApi, post_id::String; _mediaType=nothing)
-    _ctx = OpenAPI.Clients.Ctx(_api.client, "POST", _returntypes_unpin_post_PostsApi, "/posts/{post_id}/unpin", ["bearerAuth", ])
+    _ctx = OpenAPI.Clients.Ctx(_api.client, "POST", _returntypes_unpin_post_PostsApi, "/posts/{post_id}/unpin", ["bearerAuth",])
     OpenAPI.Clients.set_param(_ctx.path, "post_id", post_id)  # type String
-    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
+    OpenAPI.Clients.set_header_accept(_ctx, ["application/json",])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
 end
 
 @doc raw"""Unpin a post to the channel
 
-Unpin a post to a channel it is in based from the provided post id string. ##### Permissions Must be authenticated and have the `read_channel` permission to the channel the post is in. 
+Unpin a post to a channel it is in based from the provided post id string. ##### Permissions Must be authenticated and have the `read_channel` permission to the channel the post is in.
 
 Params:
 - post_id::String (required)
@@ -656,23 +656,23 @@ function unpin_post(_api::PostsApi, response_stream::Channel, post_id::String; _
 end
 
 const _returntypes_update_post_PostsApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => Post,
-    Regex("^" * replace("400", "x"=>".") * "\$") => AppError,
-    Regex("^" * replace("401", "x"=>".") * "\$") => AppError,
-    Regex("^" * replace("403", "x"=>".") * "\$") => AppError,
+    Regex("^" * replace("200", "x" => ".") * "\$") => Post,
+    Regex("^" * replace("400", "x" => ".") * "\$") => AppError,
+    Regex("^" * replace("401", "x" => ".") * "\$") => AppError,
+    Regex("^" * replace("403", "x" => ".") * "\$") => AppError,
 )
 
 function _oacinternal_update_post(_api::PostsApi, post_id::String, update_post_request::UpdatePostRequest; _mediaType=nothing)
-    _ctx = OpenAPI.Clients.Ctx(_api.client, "PUT", _returntypes_update_post_PostsApi, "/posts/{post_id}", ["bearerAuth", ], update_post_request)
+    _ctx = OpenAPI.Clients.Ctx(_api.client, "PUT", _returntypes_update_post_PostsApi, "/posts/{post_id}", ["bearerAuth",], update_post_request)
     OpenAPI.Clients.set_param(_ctx.path, "post_id", post_id)  # type String
-    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
-    OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? ["application/json", ] : [_mediaType])
+    OpenAPI.Clients.set_header_accept(_ctx, ["application/json",])
+    OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? ["application/json",] : [_mediaType])
     return _ctx
 end
 
 @doc raw"""Update a post
 
-Update a post. Only the fields listed below are updatable, omitted fields will be treated as blank. ##### Permissions Must have `edit_post` permission for the channel the post is in. 
+Update a post. Only the fields listed below are updatable, omitted fields will be treated as blank. ##### Permissions Must have `edit_post` permission for the channel the post is in.
 
 Params:
 - post_id::String (required)
