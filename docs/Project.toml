@@ -1,0 +1,8 @@
+[deps]
+Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
+MatterMost = "cde0203f-520b-4e04-9aee-42e57d0f514e"
+
+[compat]
+Documenter = "1"
+julia = "1.12"
+
